@@ -12,7 +12,7 @@ const WeatherCard: FC = () => {
 		setWeaterData(data);
 	}
 	return (
-		<div className=' card items-center gap-2 shadow-xl bg-base-200 w-90'>
+		<div className=' card items-center gap-2 shadow-xl bg-base-200 w-96'>
 			<Navbar setWeaterData={setData} />
 
 			{weatherData ? (
