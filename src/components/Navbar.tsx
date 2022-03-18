@@ -1,9 +1,9 @@
 /** @format */
 
 import React,{ FC, useEffect, useState } from 'react';
-import { IThemeSelectItem, WeaterData } from '../common/Types';
+import { WeaterData } from '../common/Types';
 import axios from 'axios';
-import Themes from '../common/Themes';
+import ThemeMenu from './items/ThemeMenu';
 
 interface NavbarProps {
 	setWeaterData: (data: WeaterData) => void;
@@ -12,25 +12,7 @@ interface NavbarProps {
 
 
 const Navbar: FC<NavbarProps> = ({ setWeaterData }) => {
-	const HTML = document.querySelector('html');
 	const [location, setLocation] = useState('Donetsk,UA');
-    const [currentTheme, setCurrentTheme] = useState('');
-	function click(theme: string): () => void {
-        return () => {
-            setCurrentTheme(theme);
-			
-		};
-    }
-    useEffect(() => {
-        if (!currentTheme) {
-            let localData: string | null = localStorage.getItem('Theme')
-			setCurrentTheme(localData ? localData : '');
-		}
-        if (HTML) {
-			HTML.dataset.theme = currentTheme.toString();
-			localStorage.setItem('Theme', currentTheme);
-		}
-    }, [currentTheme]);
 
 	function WeatherInquiry(): void {
 		if (location.length > 2) {
@@ -55,49 +37,21 @@ const Navbar: FC<NavbarProps> = ({ setWeaterData }) => {
 	}
 
 	return (
-		<div className='navbar bg-base-300'>
+		<div className='navbar bg-primary'>
 			<label className=' flex-1 input-group input-group-sm'>
 				<input
 					type='text'
-					className=' input input-sm bg-base-200 input-bordered input-info'
+					className=' input input-sm input-bordered input-accent font-medium'
 					value={location}
 					onChange={(e) => setLocation(e.target.value)}
 				/>
 				<button
-					className=' btn btn-sm btn-info'
+					className=' btn btn-sm btn-accent'
 					onClick={() => WeatherInquiry()}>
 					<i className='fa-solid fa-magnifying-glass'></i>
 				</button>
 			</label>
-			<div className=' dropdown dropdown-end'>
-				<label
-					tabIndex={0}
-					className='btn btn-sm normal-case flex gap-1'>
-					Themes <i className='fa-solid fa-angle-down'></i>
-				</label>
-				<div className=' dropdown-content menu bg-base-300 min-w-[6rem] p-2 p rounded-box overflow-x-hidden overflow-y-auto max-h-52 shadow-lg'>
-					<ul>
-						{Themes.map((item: IThemeSelectItem) => {
-							return (
-								<li>
-									<button
-										className={
-											item.theme === currentTheme
-												? 'btn btn-sm btn-ghost justify-start normal-case active'
-												: 'btn btn-sm btn-ghost justify-start normal-case'
-										}
-										onClick={click(item.theme)}>
-										<div className='flex gap-1'>
-											{item.theme}
-											<p>{item.themeIcon}</p>
-										</div>
-									</button>
-								</li>
-							);
-						})}
-					</ul>
-				</div>
-			</div>
+			<ThemeMenu />
 		</div>
 	);
 };

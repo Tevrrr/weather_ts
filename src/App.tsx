@@ -5,7 +5,8 @@ import './styles/output.css';
 
 function App() {
 	return (
-		<div className='App bg-neutral-content min-h-screen w-full flex justify-center items-center'>
+        <div
+            className='App bg-base-200 min-h-screen w-full flex justify-center items-center'>
 			<WeatherCard />
 		</div>
 	);
