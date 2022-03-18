@@ -4148,12 +4148,12 @@ html {
   min-height: 100vh;
 }
 
-.min-h-\[35rem\] {
-  min-height: 35rem;
-}
-
 .w-full {
   width: 100%;
+}
+
+.w-12 {
+  width: 3rem;
 }
 
 .w-96 {
@@ -4206,10 +4206,6 @@ html {
 
 .w-14 {
   width: 3.5rem;
-}
-
-.w-12 {
-  width: 3rem;
 }
 
 .min-w-\[6rem\] {
@@ -4281,16 +4277,16 @@ html {
   justify-content: center;
 }
 
-.gap-1 {
-  gap: 0.25rem;
+.gap-5 {
+  gap: 1.25rem;
 }
 
 .gap-2 {
   gap: 0.5rem;
 }
 
-.gap-5 {
-  gap: 1.25rem;
+.gap-1 {
+  gap: 0.25rem;
 }
 
 .overflow-clip {
@@ -4441,14 +4437,14 @@ html {
   text-align: center;
 }
 
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
-}
-
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .text-sm {
@@ -4531,29 +4527,4 @@ html {
 .table tr.hover\:hover:hover:hover th, .table tr.hover:hover td, .table tr.hover:nth-child(even):hover th, .table tr.hover:nth-child(even):hover td {
   --tw-bg-opacity: 1;
   background-color: hsl(var(--b3, var(--b2)) / var(--tw-bg-opacity));
-}
-
-@media (min-width: 1024px) {
-  .lg\:divider-horizontal {
-    flex-direction: column;
-  }
-
-  .lg\:divider-horizontal:before {
-    height: 100%;
-    width: 0.125rem;
-  }
-
-  .lg\:divider-horizontal:after {
-    height: 100%;
-    width: 0.125rem;
-  }
-
-  .lg\:divider-horizontal {
-    margin-top: 0px;
-    margin-bottom: 0px;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    height: auto;
-    width: 1rem;
-  }
 }

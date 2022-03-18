@@ -1,6 +1,6 @@
 /** @format */
 
-import React,{ FC, useState } from 'react';
+import React,{ FC, useEffect, useState } from 'react';
 import { IThemeSelectItem, WeaterData } from '../common/Types';
 import axios from 'axios';
 import Themes from '../common/Themes';
@@ -14,17 +14,26 @@ interface NavbarProps {
 const Navbar: FC<NavbarProps> = ({ setWeaterData }) => {
 	const HTML = document.querySelector('html');
 	const [location, setLocation] = useState('Donetsk,UA');
-
+    const [currentTheme, setCurrentTheme] = useState('');
 	function click(theme: string): () => void {
-		return () => {
-			if (HTML) {
-				HTML.dataset.theme = theme;
-			}
+        return () => {
+            setCurrentTheme(theme);
+			
 		};
-	}
+    }
+    useEffect(() => {
+        if (!currentTheme) {
+            let localData: string | null = localStorage.getItem('Theme')
+			setCurrentTheme(localData ? localData : '');
+		}
+        if (HTML) {
+			HTML.dataset.theme = currentTheme.toString();
+			localStorage.setItem('Theme', currentTheme);
+		}
+    }, [currentTheme]);
 
 	function WeatherInquiry(): void {
-		if (location.length > 3) {
+		if (location.length > 2) {
 			axios
 				.get(
 					`http://api.openweathermap.org/data/2.5/weather?appid=8c93761f0cfd02f56a37c775dc01adf7&units=metric&q=${location}`
@@ -72,7 +81,11 @@ const Navbar: FC<NavbarProps> = ({ setWeaterData }) => {
 							return (
 								<li>
 									<button
-										className='btn btn-sm btn-ghost justify-start normal-case '
+										className={
+											item.theme === currentTheme
+												? 'btn btn-sm btn-ghost justify-start normal-case active'
+												: 'btn btn-sm btn-ghost justify-start normal-case'
+										}
 										onClick={click(item.theme)}>
 										<div className='flex gap-1'>
 											{item.theme}

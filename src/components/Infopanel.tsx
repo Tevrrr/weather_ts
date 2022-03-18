@@ -17,15 +17,15 @@ const Infopanel: FC<InfopanelProps> = ({ WeaterData }) => {
 				<ul className=' text-2xl flex flex-col gap-2 p-2'>
 					<li className='flex items-center'>
 						<i className='w-12 fa-solid fa-temperature-low'></i>
-						{WeaterData.main.temp}
+						{Math.round(WeaterData.main.temp)}°C
 					</li>
 					<li className='flex items-center'>
 						<i className='w-12 fa-solid fa-temperature-high'></i>
-						{WeaterData.main.feels_like}
+						{Math.round(WeaterData.main.feels_like)}°C
 					</li>
 					<li className='flex items-center'>
 						<i className='w-12 fa-solid fa-droplet'></i>
-						{WeaterData.main.humidity}
+						{WeaterData.main.humidity}%
 					</li>
 				</ul>
 				<div className='divider divider-horizontal'></div>
